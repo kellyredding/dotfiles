@@ -11,15 +11,15 @@ task :install do
       if File.identical? file, home_path(file)
         puts "identical ~/.#{file_name(file)}"
       elsif replace_all
-        replace_file(file)
+        replace_dotfile(file)
       else
         print "overwrite ~/.#{file_name(file)}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
           replace_all = true
-          replace_file(file)
+          replace_dotfile(file)
         when 'y'
-          replace_file(file)
+          replace_dotfile(file)
         when 'q'
           exit
         else
@@ -27,7 +27,7 @@ task :install do
         end
       end
     else
-      link_file(file)
+      link_dotfile(file)
     end
 
   end
@@ -41,15 +41,15 @@ task :uninstall do
 
     if File.exist?(home_path(file))
       if remove_all
-        remove_file(file)
+        remove_dotfile(file)
       else
         print "remove ~/.#{file_name(file)}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
           remove_all = true
-          remove_file(file)
+          remove_dotfile(file)
         when 'y'
-          remove_file(file)
+          remove_dotfile(file)
         when 'q'
           exit
         else
@@ -64,16 +64,16 @@ end
 
 # Utilites
 
-def replace_file(file)
-  remove_file(file)
-  link_file(file)
+def replace_dotfile(file)
+  remove_dotfile(file)
+  link_dotfile(file)
 end
 
-def remove_file(file)
-  system %Q{rm -rf "$HOME/.#{file_name(file)}"}
+def remove_dotfile(file)
+  run_cmd %Q{rm -rf "$HOME/.#{file_name(file)}"}
 end
 
-def link_file(file)
+def link_dotfile(file)
   if file =~ /.erb$/
     puts "generating ~/.#{file_name(file)}"
     File.open(File.join(ENV['HOME'], ".#{file_name(file)}"), 'w') do |new_file|
@@ -81,7 +81,7 @@ def link_file(file)
     end
   else
     puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    run_cmd %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
   end
 end
 
@@ -94,5 +94,10 @@ def file_name(file)
 end
 
 def ignored_files
-  %w[Rakefile README.rdoc]
+  %w[Gemfile Gemfile.lock Rakefile README.rdoc]
+end
+
+def run_cmd(cmd)
+  puts "  => #{cmd}"
+  system cmd
 end
