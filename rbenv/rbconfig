@@ -1,3 +1,5 @@
+# configs for rbcmd (https://github.com/kelredd/rb)
+
 [env]
     status=true
 [alias]
@@ -19,4 +21,3 @@
     xe = rmenv
     i  = install
     rm = uninstall
-
