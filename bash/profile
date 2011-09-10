@@ -1,0 +1,31 @@
+# Ruby stuff
+# - rb, rbenv, ruby-build
+# - rsc, rss cmds
+# - gem completion
+# - rake completion
+# - rb ps1 stuff
+if [ -f ~/.bash/ruby ]; then
+    . ~/.bash/ruby
+fi
+
+# Git stuff
+# - command auto complete
+# - ps1 helpers
+if [ -f ~/.bash/git ]; then
+    . ~/.bash/git
+fi
+
+# Aliases
+if [ -f ~/.bash/aliases ]; then
+    . ~/.bash/aliases
+fi
+
+# Color definitions
+if [ -f ~/.bash/colors ]; then
+    . ~/.bash/colors
+fi
+
+# Custom PS1
+if [ -f ~/.bash/ps1 ]; then
+    . ~/.bash/ps1
+fi
