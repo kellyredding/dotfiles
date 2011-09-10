@@ -37,7 +37,7 @@ task :uninstall do
   dotfile_source_paths.each do |source_path|
     next if ignore_dotfile? source_path
     home_path = dotfile_home_path(source_path)
-    if File.exist? home_path
+    if File.exist? File.expand_path(home_path)
       if remove_all
         remove_dotfile(home_path)
       else
@@ -94,9 +94,6 @@ end
 
 
 
-# def home_path(file)
-#   File.join(ENV['HOME'], ".#{file_name(file)}")
-# end
 def dotfile_home_path(source_path)
   source_path.
     gsub(/^#{dotfiles_source_root}\//, "~/.").
