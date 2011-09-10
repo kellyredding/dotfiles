@@ -1,0 +1,35 @@
+[user]
+	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
+	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[core]
+	excludesfile = ~/.gitignore
+[push]
+	userdefault = matching
+[instaweb]
+	local = true
+	httpd = webrick
+[alias]
+	s = status --short --branch
+	d = diff
+	l = log
+	ll = log -p
+	a = add
+	aa = add --all
+	c = commit
+	cm = commit -m
+	k = checkout
+	kb = checkout -b
+	b = branch -a -v
+	bd = branch -d
+	bdd = branch -D
+	m = merge
+	p = push
+	pt = push --tags
+	u = pull
+	rb = rebase master
+	pn = remote prune origin
+	who = shortlog -s
+	iw = instaweb
+	iws = instaweb --stop
+[color]
+	ui=true
