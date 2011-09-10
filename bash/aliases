@@ -1,0 +1,16 @@
+alias ls='ls -F'
+alias l='ls -l'
+alias la='ls -a'
+alias ll='ls -lah'
+alias ..='cd ..'
+
+alias path='echo -e ${PATH//:/\\\n}'
+alias targz='tar xzvf'
+
+# for some reason rbenv won't create a 'qw' shim on rehash??
+alias qw="`rb gemdir`/../bin/qw --editor `which mate`"
+alias bx="bundle exec"
+alias cap="bx cap"
+alias rake="bx rake"
+alias irb="pry --simple-prompt"
+alias pry="pry --simple-prompt"

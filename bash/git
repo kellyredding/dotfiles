@@ -1,0 +1,9 @@
+# git completion, also contains ps1 stuff
+if [ -f ~/.bash/completion_scripts/git_completion ]; then
+  . ~/.bash/completion_scripts/git_completion
+fi
+
+# used in the ps1 stuff
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
