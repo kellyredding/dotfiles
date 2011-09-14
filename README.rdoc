@@ -2,14 +2,15 @@
 
 These are my personal dotfiles.  They setup an environment the way I like it.
 
-
 == Installation
 
 Run these commands
 
   git clone git://github.com/kelredd/dotfiles ~/.dotfiles
   cd ~/.dotfiles
-  rake install
+  gem install bundler
+  bundle update
+  bundle exec rake install
 
 Add this to your ~/.bash_profile or ~/.bashrc or whatever:
 
@@ -30,12 +31,13 @@ I am running on Mac OS X, bash.
 * git completion
 * gem completion**
 * rake completion
-* cap completion
+* cap completion (TODO)
 
 - ** requires install of ruby-build, rbenv, and rbcmd (https://github.com/kelredd/rb)
 
 === Projects access
 
+TODO:
 I place all of my projects in ~/projects, so this directory
 can easily be accessed (and tab completed) with the "p" command.
 
@@ -43,6 +45,7 @@ can easily be accessed (and tab completed) with the "p" command.
 
 == Home dir access
 
+TODO:
 There is also an "h" command which behaves similar, but acts on the
 home path.
 
