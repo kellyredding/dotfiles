@@ -1,4 +1,4 @@
-= Kelly Redding Dot Files
+= My dotfiles
 
 These are my personal dotfiles.  They setup an environment the way I like it.
 
