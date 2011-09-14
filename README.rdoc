@@ -43,7 +43,7 @@ can easily be accessed (and tab completed) with the "p" command.
 
   p gith<tab>
 
-== Home dir access
+=== Home dir access
 
 TODO:
 There is also an "h" command which behaves similar, but acts on the
