@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for v in $@; do
+  mv -f $v ~/.Trash
+done

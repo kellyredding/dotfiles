@@ -5,7 +5,7 @@ if [ -f ~/.bash/colors ]; then
     . ~/.bash/colors
 
 
-    PS1=${PS1}"\[$bldylw\]\w\[$txtrst\]"                   # => pwd (in yellow, bold)
+    PS1="\[$bldylw\]\w\[$txtrst\]"                         # => pwd (in yellow, bold)
 
     if command -v __rb_ps1 &>/dev/null; then
       PS1=${PS1}'$(__rb_ps1)'                              # => show rb ps1 (see ~/.bash/ruby for details)
