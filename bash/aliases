@@ -1,7 +1,7 @@
 alias ls='ls -F'
-alias l='ls -l'
-alias la='ls -a'
-alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -lhF'
+alias ll='ls -lahF'
 alias ..='cd ..'
 
 alias path='echo -e ${PATH//:/\\\n}'
