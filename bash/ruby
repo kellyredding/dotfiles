@@ -46,3 +46,6 @@ function rss {
     bundle exec rails server $@
   fi
 }
+
+# Pow configs
+export POW_DOMAINS=dev,local,test
