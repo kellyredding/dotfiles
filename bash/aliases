@@ -17,3 +17,6 @@ alias pry="pry --simple-prompt"
 
 alias tlog='mkdir -p log; touch log/development.log; tail -f log/development.log'
 alias rst='touch tmp/restart.txt'
+
+alias sub='subl'
+alias mate='subl'
