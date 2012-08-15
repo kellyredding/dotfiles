@@ -1,37 +1,44 @@
 [user]
 	name = <%=  print(" - Your Name: ");  STDOUT.flush; STDIN.gets.chomp %>
 	email = <%= print(" - Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[credential]
+	helper = osxkeychain
+[color]
+	ui=true
 [core]
 	excludesfile = ~/.gitignore
 [push]
-        userdefault = matching
+	userdefault = matching
+	# Push current branch even if you've never pushed it before
+	#default = current
 [instaweb]
 	local = true
 	httpd = webrick
 [alias]
-	s = status --short --branch
-	d = diff
-	dlt = diff lib/ test/
-	l = log
-	ll = log -p
-	a = add
-	alt = add lib/ test/
-	aa = add --all
-	c = commit
-	cm = commit -m
-	k = checkout
-	kb = checkout -b
-	b = branch -a -v
-	bd = branch -d
-	bdd = branch -D
-	m = merge
-	p = push
-	pt = push --tags
-	u = pull
-	rb = rebase master
-	pn = remote prune origin
+	s   = status --short --branch
+	l   = log
+	ll  = log -p
 	who = shortlog -s
-	iw = instaweb
+	d   = diff --color
+	dw  = diff --color-words
+	dlt = diff lib/ test/
+	a   = add
+	aa  = add --all
+	alt = add lib/ test/
+	c   = commit
+	cm  = commit -m
+	k   = checkout
+	kb  = checkout -b
+	b   = branch -a -v
+	bd  = branch -d
+	bdd = branch -D
+	m   = merge
+	p   = push
+	pt  = push --tags
+	u   = pull
+	f   = fetch
+	rb  = rebase master
+	chp = cherry-pick
+	pn  = remote prune origin
+	iw  = instaweb
 	iws = instaweb --stop
-[color]
-	ui=true
