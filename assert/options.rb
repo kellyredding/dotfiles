@@ -1,20 +1,16 @@
 Assert::Test.options.capture_output  true
-Assert::Test.options.halt_on_fail false
-
-# default view setting
+Assert::Test.options.halt_on_fail    false
 Assert.options.view                  Assert::View::DefaultView.new($stdout)
 
-# other views
-# require 'assert/view/test_unit_view'
-# Assert.options.view                  Assert::View::TestUnitView.new($stdout)
+# assert-view-testunit
 
-# require 'assert/view/redgreen_view'
-# Assert.options.view                  Assert::View::RedgreenView.new($stdout)
+#Assert::View.require_user_view 'assert-view-testunit'
+#Assert.options.view                  Assert::View::TestUnitView.new($stdout)
+#Assert.options.view                  Assert::View::RedgreenView.new($stdout)
 
-# require 'assert/view/leftright_view'
-# Assert.options.view                  Assert::View::LeftrightView.new($stdout)
+# assert-view-leftright
 
-Assert.view.options.styled                true
-Assert.view.options.left_column_groupby   :file
-Assert.view.options.left_column_justify   :left
-Assert.view.options.right_column_width    115
+#Assert::View.require_user_view 'assert-view-leftright'
+#Assert.options.view                  Assert::View::LeftrightView.new($stdout)
+#Assert.view.options.left_column_groupby   :file
+#Assert.view.options.left_column_justify   :left
