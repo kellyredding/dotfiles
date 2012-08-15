@@ -20,3 +20,5 @@ alias rst='touch tmp/restart.txt'
 
 alias sub='subl'
 alias mate='subl'
+
+alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
