@@ -12,6 +12,7 @@ alias targz='tar xzvf'
 alias bx="bundle exec"
 alias cap="bx cap"
 alias rake="bx rake"
+alias jekyll="bx jekyll"
 alias irb="pry --simple-prompt"
 alias pry="pry --simple-prompt"
 
@@ -22,3 +23,5 @@ alias sub='subl'
 alias mate='subl'
 
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
+
+alias reload='source ~/.bash_profile'
