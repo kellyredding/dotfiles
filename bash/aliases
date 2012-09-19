@@ -9,18 +9,21 @@ alias targz='tar xzvf'
 
 # for some reason rbenv won't create a 'qw' shim on rehash??
 # alias qw="`rb gemdir`/../bin/qw --editor `which mate`"
+alias irb="pry --simple-prompt"
+alias pry="pry --simple-prompt"
 alias bx="bundle exec"
 alias cap="bx cap"
 alias rake="bx rake"
 alias jekyll="bx jekyll"
-alias irb="pry --simple-prompt"
-alias pry="pry --simple-prompt"
+alias vagrant="bx vagrant"
 
 alias tlog='mkdir -p log; touch log/development.log; tail -f log/development.log'
 alias rst='touch tmp/restart.txt'
 
 alias sub='subl'
 alias mate='subl'
+
+alias rbfu-pow='echo `cat ~/.ruby-version` > ./.ruby-version && echo "source rbfu" > ./.powrc'
 
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
 
