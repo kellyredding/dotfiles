@@ -1,22 +1,6 @@
-# rbenv init (path, shim rehash, and autocomplete)
-if command -v rbenv &>/dev/null; then
-  export PATH="/Users/kelly/.rbenv/shims:${PATH}"
-  # eval "$(rbenv init -)"
-fi
-
-# rb for managing rbevn/ruby-build using rbcmd
-if command -v rbcmd &>/dev/null; then
-  function rb {
-    eval $(rbcmd $@)
-  }
-
-  # used in the ps1 stuff
-  function __rb_ps1 {
-    local ps1="$(rbcmd prompt 2>/dev/null)"              # => get aliased ruby version string
-    if [ -n "$ps1" ]; then                               # => if different than the current global version
-      printf "[$txtcyn$ps1$txtrst]"                      # => [in brackets], show aliased version string colored cyan
-    fi
-  }
+# version manager
+if command -v raa &>/dev/null; then
+  eval "$(raa --init --auto)"
 fi
 
 # gem completion

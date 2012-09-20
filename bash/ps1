@@ -12,11 +12,6 @@ if [ -f ~/.bash/colors ]; then
 
     PS1=$PS1"\[$bldylw\]\w\[$txtrst\]"              # => pwd (in yellow, bold)
 
-    if command -v __rb_ps1 &>/dev/null; then
-      PS1=$PS1'$(__rb_ps1)'                         # => show rb ps1
-                                                    #    (see ~/.bash/ruby for details)
-    fi
-
     if [ -f ~/.bash/git ]; then
       PS1=$PS1'$(__git_ps1 "[\[$txtgrn\]%s\[$txtylw\]$(parse_git_dirty)\[$txtrst\]]")'
                                                     # => [in brackets] (default color)...
