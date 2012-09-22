@@ -22,6 +22,7 @@ alias rst='touch tmp/restart.txt'
 
 alias sub='subl'
 alias mate='subl'
+alias st='subl .'
 
 alias rbfu-pow='echo `cat ~/.ruby-version` > ./.ruby-version && echo "source rbfu" > ./.powrc'
 
