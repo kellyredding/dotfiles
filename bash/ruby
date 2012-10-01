@@ -1,6 +1,6 @@
 # version manager
-if command -v raa &>/dev/null; then
-  eval "$(raa --init --auto)"
+if command -v rb &>/dev/null; then
+  eval "$(rb init --auto)"
 fi
 
 # gem completion
