@@ -6,21 +6,20 @@ if [ -f ~/.bash/colors ]; then
 
     PS1=""
 
-    if [ -f ~/.bashrc ]; then                       # => if not on my development machine
-      PS1=$PS1"\[$bldgrn\]\u@\h\[$txtrst\]:"        #    user@host: in green, bold
+    if [ -f ~/.bashrc ]; then                 # => if not on my development machine
+      PS1=$PS1"\[$bldgrn\]\u@\h\[$txtrst\]:"  #    user@host: in green, bold
     fi
 
-    PS1=$PS1"\[$bldylw\]\w\[$txtrst\]"              # => pwd (in yellow, bold)
+    PS1=$PS1"\[$bldylw\]\w\[$txtrst\]"        # => pwd (yellow, bold)
 
-    if [ -f ~/.bash/git ]; then
-      PS1=$PS1'$(__git_ps1 "[\[$txtgrn\]%s\[$txtylw\]$(parse_git_dirty)\[$txtrst\]]")'
-                                                    # => [in brackets] (default color)...
-                                                    # => git branch name (in green)
-                                                    # => followed by asterisk (in yellow)
-                                                    #    (if dirty)
-    fi
+    PS1=$PS1'$(__git_ps1 "[\[$txtgrn\]%s\[$txtred\]%s\[$txtcyn\]%s\[$txtylw\]%s\[$txtrst\]]")'
+                                              # => [in brackets]      (default color)...
+                                              # => git branch name    (green)
+                                              # => then stashstate    (red)
+                                              # => then upstreamstate (cyan)
+                                              # => then dirtystate    (yellow)
 
-    PS1=$PS1"\[$txtrst\]\$ "                        # => dollar sign with space
-                                                    #    (in default color)
+    PS1=$PS1"\[$txtrst\]\$ "                  # => dollar sign, space (default color)
+
     export PS1
 fi

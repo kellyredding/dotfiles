@@ -1,9 +1,14 @@
-# git completion, also contains ps1 stuff
-if [ -f ~/.bash/completion_scripts/git_completion ]; then
-  . ~/.bash/completion_scripts/git_completion
+# git completion
+
+if [ -f ~/.bash/completion_scripts/git-completion.sh ]; then
+  . ~/.bash/completion_scripts/git-completion.sh
 fi
 
-# used in the ps1 stuff
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
+# git prompt stuff
+
+if [ -f ~/.bash/completion_scripts/git-prompt-kellyredding.sh ]; then
+  . ~/.bash/completion_scripts/git-prompt-kellyredding.sh
+fi
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUPSTREAM=true
