@@ -1,7 +1,10 @@
-Assert::Test.options.capture_output  true
-Assert::Test.options.halt_on_fail    false
-Assert.options.view                  Assert::View::DefaultView.new($stdout)
+Assert.configure do |c|
+  c.show_output  false
+  c.halt_on_fail false
+  c.view         Assert::View::DefaultView.new($stdout)
+end
 
+# TODO: rework for new config/init pattern
 # assert-view-testunit
 
 #Assert::View.require_user_view 'assert-view-testunit'

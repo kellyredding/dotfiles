@@ -16,6 +16,7 @@ alias cap="bx cap"
 alias rake="bx rake"
 alias jekyll="bx jekyll"
 alias vagrant="bx vagrant"
+alias assert="bx assert"
 
 alias tlog='mkdir -p log; touch log/development.log; tail -f log/development.log'
 alias rst='touch tmp/restart.txt'
