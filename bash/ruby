@@ -1,32 +1,9 @@
-# version manager
+# version manager: https://github.com/redding/rb#install
 if command -v rb &>/dev/null; then
   eval "$(rb init --auto)"
 fi
 
 # gem completion
-if [ -f ~/.bash/completion_scripts/gem_completion ]; then
-  complete -C ~/.bash/completion_scripts/gem_completion -o default gem
+if [ -f ~/.bash/completion_scripts/gem-completion.rb ]; then
+  complete -C ~/.bash/completion_scripts/gem-completion.rb -o default gem
 fi
-
-# rake completion
-if [ -f ~/.bash/completion_scripts/rake_completion ]; then
-  complete -C ~/.bash/completion_scripts/rake_completion -o default rake
-fi
-
-# ruby app console cmd
-function rsc {
-  if [ -f ./script/console ]; then
-    bundle exec ruby ./script/console $@
-  elif [ -f ./script/rails ]; then
-    bundle exec rails console $@
-  fi
-}
-
-# ruby app server cmd
-function rss {
-  if [ -f ./script/server ]; then
-    bundle exec ruby ./script/server $@
-  elif [ -f ./script/rails ]; then
-    bundle exec rails server $@
-  fi
-}
