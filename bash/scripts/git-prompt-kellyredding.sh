@@ -79,13 +79,13 @@ __git_ps1_show_upstream ()
 
   # calculate the result
   p="" # no upstream, by default
-  if [[ $count == "0"* ]] && [[ $count == *"0" ]]; then
+  if [[ $count =~ ^0[^0-9]+ ]] && [[ $count =~ [^0-9]+0$ ]]; then
     p+="=" # equal to upstream
   else
-    if [[ $count == *"0" ]]; then
+    if [[ $count =~ [^0-9]+0$ ]]; then
       p+="<" # behind upstream
     fi
-    if [[ $count == "0"* ]]; then
+    if [[ $count =~ ^0[^0-9]+ ]]; then
       p+=">" # ahead of upstream
     fi
     # diverged from upstream if both behind and ahead
