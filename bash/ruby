@@ -4,6 +4,6 @@ if command -v rb &>/dev/null; then
 fi
 
 # gem completion
-if [ -f ~/.bash/completion_scripts/gem-completion.rb ]; then
-  complete -C ~/.bash/completion_scripts/gem-completion.rb -o default gem
+if [ -f ~/.bash/scripts/gem-completion.rb ]; then
+  complete -C ~/.bash/scripts/gem-completion.rb -o default gem
 fi
