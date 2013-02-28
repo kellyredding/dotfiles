@@ -18,8 +18,8 @@ Now, add this to your `~/.bash_profile` or `~/.bashrc` or whatever:
 
 ```bash
 # source in dotfiles
-if [ -f ~/.bash_dotfiles ]; then
-  . ~/.bash_dotfiles
+if [ -f ~/.bash_dotfiles.sh ]; then
+  . ~/.bash_dotfiles.sh
 fi
 ```
 

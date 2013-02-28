@@ -1,8 +1,8 @@
 # Set up a fancy pants prompt with colored pwd, ruby, and git info
 
 # be sure to define the colors
-if [ -f ~/.bash/colors ]; then
-    . ~/.bash/colors
+if [ -f ~/.bash/colors.sh ]; then
+    . ~/.bash/colors.sh
 
     PS1=""
 
