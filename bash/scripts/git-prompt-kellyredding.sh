@@ -75,20 +75,23 @@ __git_ps1_show_upstream ()
   # "0 {N}" : ahead of upstream
   # "{N} 0" : behind upstream
   # "0 0"   : equal to upstream
-  count="$(git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null)"
+  local counts="$(git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null)"
+  local ahead_count=""
+  local behind_count=""
 
-  # calculate the result
-  p="" # no upstream, by default
-  if [[ $count =~ ^0[^0-9]+ ]] && [[ $count =~ [^0-9]+0$ ]]; then
+  [[ "$counts" =~ (^[0-9]+) ]] && behind_count="${BASH_REMATCH[1]}"
+  [[ "$counts" =~ ([0-9]+$) ]] && ahead_count="${BASH_REMATCH[1]}"
+
+  # build the result
+  p=""
+  if [[ $behind_count == "" ]] && [[ $ahead_count == "" ]]; then
+    p+="" # no upstream
+  elif [[ $behind_count == "0" ]] && [[ $ahead_count == "0" ]]; then
     p+="=" # equal to upstream
   else
-    if [[ $count =~ [^0-9]+0$ ]]; then
-      p+="<" # behind upstream
-    fi
-    if [[ $count =~ ^0[^0-9]+ ]]; then
-      p+=">" # ahead of upstream
-    fi
-    # diverged from upstream if both behind and ahead
+    [[ $behind_count != "0" ]] && p+="<" # behind upstream
+    [[ $ahead_count  != "0" ]] && p+=">" # ahead upstream
+    # diverged if both behind and ahead
   fi
 }
 
