@@ -212,7 +212,6 @@ __git_ps1 ()
       fi
     fi
 
-    # local f="$w$i$s$u"
     # print out the branch name, the upstream divergence, and the dirty state
     printf -- "$printf_format" "$c${b##refs/heads/}$r" "$s" "$p" "$w"
   fi

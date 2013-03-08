@@ -12,6 +12,8 @@ if [ -f ~/.bash/colors.sh ]; then
 
     PS1=$PS1"\[$bldylw\]\w\[$txtrst\]"        # => pwd (yellow, bold)
 
+    PS1=$PS1'$(__rb_ps1  "[\[$txtcyn\]%s\[$txtrst\]]")'
+
     PS1=$PS1'$(__git_ps1 "[\[$txtgrn\]%s\[$txtred\]%s\[$txtcyn\]%s\[$txtylw\]%s\[$txtrst\]]")'
                                               # => [in brackets]      (default color)...
                                               # => git branch name    (green)
