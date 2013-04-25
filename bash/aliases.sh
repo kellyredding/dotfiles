@@ -9,15 +9,18 @@ alias targz='tar xzvf'
 alias reload='source ~/.bash_profile'
 alias pwdc='pwd | pbcopy'
 
-alias irb="pry --simple-prompt"
+alias irb="pry"
 alias pry="pry --simple-prompt"
 alias bx="bundle exec"
 alias cap="bx cap"
 alias rake="bx rake"
 alias jekyll="bx jekyll"
 alias vagrant="bx vagrant"
+alias guard="bx guard -i"
 alias assert="bx assert"
 alias sanford="bx sanford"
+alias ardb="bx ardb"
+alias dassets="bx dassets"
 
 alias ghost="sudo ghost"
 alias ghost-ssh="ghost-ssh"
