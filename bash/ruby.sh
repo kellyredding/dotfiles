@@ -12,6 +12,8 @@ fi
 
 # gem completion
 
-if [ -f ~/.bash/scripts/gem-completion.rb ]; then
-  complete -C ~/.bash/scripts/gem-completion.rb -o default gem
+if [ -f ~/.bash/scripts/gem-completion.sh ]; then
+  . ~/.bash/scripts/gem-completion.sh
 fi
+
+export GEM_EDITOR="subl"
