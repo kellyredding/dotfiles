@@ -16,4 +16,10 @@ if [ -f ~/.bash/scripts/gem-completion.sh ]; then
   . ~/.bash/scripts/gem-completion.sh
 fi
 
+# grb completion
+
+if [ -f ~/.bash/scripts/grb-completion-kellyredding.sh ]; then
+  . ~/.bash/scripts/grb-completion-kellyredding.sh
+fi
+
 export GEM_EDITOR="subl"
