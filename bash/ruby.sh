@@ -12,8 +12,8 @@ fi
 
 # gem completion
 
-if [ -f ~/.bash/scripts/gem-completion.sh ]; then
-  . ~/.bash/scripts/gem-completion.sh
+if [ -f ~/.bash/scripts/gem-completion-kellyredding.sh ]; then
+  . ~/.bash/scripts/gem-completion-kellyredding.sh
 fi
 
 # grb completion
