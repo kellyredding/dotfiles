@@ -1,3 +1,8 @@
+# home bin path
+if [ -d "$HOME/.bin" ]; then
+  export PATH="$HOME/.bin:$PATH"
+fi
+
 # Color definitions
 if [ -f ~/.bash/colors.sh ]; then
   . ~/.bash/colors.sh
@@ -31,11 +36,6 @@ fi
 # Custom PS1
 if [ -f ~/.bash/ps1.sh ]; then
   . ~/.bash/ps1.sh
-fi
-
-# home bin path
-if [ -d "$HOME/.bin" ]; then
-  export PATH="$HOME/.bin:$PATH"
 fi
 
 # Sublime Text 2 editor
