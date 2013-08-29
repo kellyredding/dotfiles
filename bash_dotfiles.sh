@@ -3,6 +3,8 @@ if [ -d "$HOME/.bin" ]; then
   export PATH="$HOME/.bin:$PATH"
 fi
 
+export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+
 # Color definitions
 if [ -f ~/.bash/colors.sh ]; then
   . ~/.bash/colors.sh
