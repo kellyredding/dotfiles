@@ -45,9 +45,3 @@ fi
 if [ -f ~/.bash/explain.sh ]; then
   . ~/.bash/explain.sh
 fi
-
-# Sublime Text 2 editor
-#if [ -f "/usr/local/bin/subl" ]; then
-#  export EDITOR="/usr/local/bin/subl"
-#fi
-
