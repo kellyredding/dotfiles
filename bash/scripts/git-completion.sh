@@ -1006,7 +1006,7 @@ _git_commit ()
     __gitcomp "
       --all --author= --signoff --verify --no-verify
       --edit --no-edit
-      --amend --include --only --interactive
+      --amend --allow-empty --include --only --interactive
       --dry-run --reuse-message= --reedit-message=
       --reset-author --file= --message= --template=
       --cleanup= --untracked-files --untracked-files=
