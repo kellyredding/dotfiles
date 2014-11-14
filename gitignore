@@ -1,6 +1,5 @@
 .DS_Store
 .svn
-*.powrc
 *.swp
 *.log
 *.tmp
