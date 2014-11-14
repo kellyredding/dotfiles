@@ -31,27 +31,13 @@ I am running on Mac OS X, bash.
 
 * aliases
 * fancy ps1 with pwd, ruby**, and git info
-* configs for git, gem, irb, pry, rbcmd**, etc...
+* configs for git, gem, irb, pry, rb**, etc...
 * git completion
 * gem completion**
 * rake completion
 * cap completion (TODO)
 
-** requires install of [ruby-build, rbenv, and rbcmd](https://github.com/kellyredding/rb)
-
-### Projects access
-
-TODO:
-I place all of my projects in ~/projects, so this directory can easily be accessed (and tab completed) with the "p" command.
-
-  p gith<tab>
-
-### Home dir access
-
-TODO:
-There is also an "h" command which behaves similar, but acts on the home path.
-
-  h Mu<tab>
+** requires install of [ruby-build and rb](https://github.com/redding/rb)
 
 ## Other configuration settings
 
