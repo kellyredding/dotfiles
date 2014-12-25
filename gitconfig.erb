@@ -7,6 +7,7 @@
 	ui=true
 [core]
 	excludesfile = ~/.gitignore
+	pager = less
 [push]
 	default = current
 [instaweb]
@@ -20,7 +21,7 @@
 	d   = diff --color
 	ds  = diff --color --stat
 	dw  = diff --color-words
-	dd  = icdiff
+	dd  = --paginate difftool --no-prompt --extcmd=icdiff
 	dlt = diff lib/ test/
 	a   = add
 	ap  = app -p
