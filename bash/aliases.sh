@@ -8,6 +8,8 @@ alias path='echo -e ${PATH//:/\\\n}'
 alias targz='tar xzvf'
 alias reload='source ~/.bash_profile'
 alias pwdc='pwd | pbcopy'
+alias shrugc='echo "¯\_(ツ)_/¯" | pbcopy'
+alias shrugcc='echo "¯\\\\\_(ツ)_/¯" | pbcopy'
 
 alias irb="pry"
 alias pry="pry --simple-prompt"
