@@ -4,6 +4,7 @@ alias l='ls -lhF'
 alias ll='ls -lahF'
 alias ..='cd ..'
 
+alias plz='sudo $(history -p \!\!)'
 alias path='echo -e ${PATH//:/\\\n}'
 alias targz='tar xzvf'
 alias reload='source ~/.bash_profile'
