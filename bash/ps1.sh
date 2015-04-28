@@ -12,8 +12,6 @@ if [ -f ~/.bash/colors.sh ]; then
 
     PS1=$PS1"\[$bldylw\]\w\[$txtrst\]"        # => pwd (yellow, bold)
 
-    PS1=$PS1'$(__rb_ps1  "[\[$txtcyn\]%s\[$txtrst\]]")'
-
     PS1=$PS1'$(__git_ps1 "[\[$txtgrn\]%s\[$txtred\]%s\[$txtcyn\]%s\[$txtylw\]%s\[$txtrst\]]")'
                                               # => [in brackets]      (default color)...
                                               # => git branch name    (green)
@@ -21,7 +19,12 @@ if [ -f ~/.bash/colors.sh ]; then
                                               # => then upstreamstate (cyan)
                                               # => then dirtystate    (yellow)
 
-    PS1=$PS1"\[$txtrst\]\$ "                  # => dollar sign, space (default color)
+    PS1=$PS1'$(__rb_ps1  " \[$txtcyn\]%s\[$txtrst\]")'
+                                              # => space, active ruby version (cyan)
+
+    PS1=$PS1" \[$bldred\]\@\[$txtrst\]"       # => space, current time (bold red)
+
+    PS1=$PS1"\[$txtrst\]\n\$ "                # => newline, dollar sign, space (default color)
 
     export PS1
 fi
