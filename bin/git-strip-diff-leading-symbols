@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function git_strip_diff_leading_symbols() {
+  color_code_regex="(\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K])"
+
+  # simplify the unified patch diff header
+  gsed -r "s/^($color_code_regex)diff --git .*$//g" | \
+    gsed -r "s/^($color_code_regex)index .*$/\n\1$(git-horz-rule)/g" | \
+    gsed -r "s/^($color_code_regex)\+\+\+(.*)$/\1+++\5\n\1$(git-horz-rule)\x1B\[m/g" | \
+
+  # actually strips the leading symbols
+    gsed -r "s/^($color_code_regex)[\+\-]/\1 /g"
+}
+
+# allow to be sourced without running
+if [[ $_ == $0 ]]; then
+  git_strip_diff_leading_symbols
+fi

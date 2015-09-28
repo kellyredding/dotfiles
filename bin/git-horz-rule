@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function git_horz_rule() {
+  printf "%$(tput cols)s\n"|tr " " "─"
+}
+
+# allow to be sourced without running
+if [[ $_ == $0 ]]; then
+  git_horz_rule
+fi
