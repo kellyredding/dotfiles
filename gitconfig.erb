@@ -3,11 +3,23 @@
 	email = <%= print(" - Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
 [credential]
 	helper = osxkeychain
-[color]
-	ui=true
 [core]
 	excludesfile = ~/.gitignore
 	pager = less
+[color]
+  ui=true
+[color "branch"]
+  current = green
+  remote = red
+[color "status"]
+  added = green
+  changed = red
+  untracked = cyan
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
 [push]
 	default = current
 [instaweb]
