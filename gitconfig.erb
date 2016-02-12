@@ -5,7 +5,7 @@
 	helper = osxkeychain
 [core]
   excludesfile = ~/.gitignore
-  pager = bash -c 'git-diff-highlight | git-strip-diff-leading-symbols | less -r' -
+  pager = less -R
 [color]
   ui=true
 [color "branch"]
@@ -19,11 +19,6 @@
   frag = cyan
   old = red
   new = green
-[color "diff-highlight"]
-  oldnormal = "red"
-  oldhighlight = "red bold 52"
-  newnormal = "green"
-  newhighlight = "green bold 22"
 [push]
 	default = current
 [instaweb]
