@@ -38,3 +38,7 @@ alias st='subl .'
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
 
 alias til='grep -d recurse -h `date "+%m/%d"` /usr/share/calendar/'
+
+# legacy REE for El Capitan gem compilation
+alias reebundle="CFLAGS=\"-O2 -fno-tree-dce -fno-optimize-sibling-calls\" bundle"
+alias reegem="CFLAGS=\"-O2 -fno-tree-dce -fno-optimize-sibling-calls\" gem"
