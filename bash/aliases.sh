@@ -15,6 +15,7 @@ alias shrugcc='echo "¯\\\\\_(ツ)_/¯" | pbcopy'
 alias irb="pry"
 alias pry="pry --simple-prompt"
 alias bx="bundle exec"
+alias dk="bx dk"
 alias cap="bx cap"
 alias rake="bx rake"
 alias jekyll="bx jekyll"
