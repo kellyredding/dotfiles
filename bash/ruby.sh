@@ -28,4 +28,9 @@ if [ -f ~/.bash/scripts/assert-individually.sh ]; then
   . ~/.bash/scripts/assert-individually.sh
 fi
 
+# rubocop macros
+if [ -f ~/.bash/scripts/rubocop-macros.sh ]; then
+  . ~/.bash/scripts/rubocop-macros.sh
+fi
+
 export GEM_EDITOR="subl"
