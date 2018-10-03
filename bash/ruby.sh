@@ -34,3 +34,4 @@ if [ -f ~/.bash/scripts/rubocop-macros.sh ]; then
 fi
 
 export GEM_EDITOR="subl"
+export DISABLE_SPRING=1
