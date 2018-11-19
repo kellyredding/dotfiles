@@ -19,8 +19,8 @@ module ATestRunner
   BIN_NAME           = "massert"
   TEST_DIR           = "test"
   TEST_FILE_SUFFIXES = ["_test.rb"]
-  DEFAULT_TEST_CMD   = "MINITEST_REPORTER=ProgressReporter ./bin/rake test"
-  VERBOSE_TEST_CMD   = "MINITEST_REPORTER=SpecReporter ./bin/rake test"
+  DEFAULT_TEST_CMD   = "MINITEST_REPORTER=ProgressReporter ./bin/rails test"
+  VERBOSE_TEST_CMD   = "MINITEST_REPORTER=SpecReporter ./bin/rails test"
   SEED_ENV_VAR_NAME  = "SEED"
   ENV_VARS           = "USE_SIMPLE_COV=0"
 
@@ -78,7 +78,7 @@ module ATestRunner
       @argv = argv
       @clirb = CLIRB.new do
         option 'seed_value', 'use a given seed to run tests', {
-          :abbrev => 's', :value => Fixnum
+          :abbrev => 's', :value => Integer
         }
         option 'changed_only', 'only run test files with changes', {
           :abbrev => 'c'
@@ -307,8 +307,8 @@ module ATestRunner
           custom_abbrev || processed_name.gsub(/[^a-z]/, '').chars.first || 'a'
         ]
       end
-      def gvalinfo(v); v.kind_of?(Class) ? [nil,gklass(v)] : [v,gklass(v.class)]; end
-      def gklass(k); k == Fixnum ? Integer : k; end
+      def gvalinfo(v); v.kind_of?(Class) ? [nil,v] : [v,v.class]; end
+      # def gklass(k); k == Fixnum ? Integer : k; end
     end
   end
 
