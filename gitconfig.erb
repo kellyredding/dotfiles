@@ -1,8 +1,8 @@
 [user]
-	name  = <%=  print(" - Your Name: ");  STDOUT.flush; STDIN.gets.chomp %>
-	email = <%= print(" - Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+  name  = <%=  print(" - Your Name: ");  STDOUT.flush; STDIN.gets.chomp %>
+  email = <%= print(" - Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [core]
   excludesfile = ~/.gitignore
   pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -R
@@ -25,42 +25,42 @@
   newNormal = green bold
   newHighlight = green bold 22
 [push]
-	default = current
+  default = current
 [instaweb]
-	local = true
-	httpd = webrick
+  local = true
+  httpd = webrick
 [alias]
-	s   = status --short --branch
-	l   = log --parents
-	ll  = log -p --parents
-	who = shortlog -s
-	d   = diff --color
-	ds  = diff --color --stat
-	dw  = diff --color-words
-	dd  = --paginate difftool --no-prompt --extcmd=icdiff
-	dlt = diff lib/ test/
-	a   = add
-	ap  = app -p
-	aa  = add --all
-	alt = add lib/ test/
-	c   = commit
-	cm  = commit -m
-	k   = checkout
-	kb  = checkout -b
-	b   = branch -a -v
-	bd  = branch -d
-	bdd = branch -D
-	m   = merge
-	p   = push
-	pt  = push --tags
-	u   = pull --ff-only
-	f   = fetch
-	rb  = rebase
-	rs  = fresh -frsl
+  s   = status --short --branch
+  l   = log --parents
+  ll  = log -p --parents
+  who = shortlog -s
+  d   = diff --color
+  ds  = diff --color --stat
+  dw  = diff --color-words
+  dd  = --paginate difftool --no-prompt --extcmd=icdiff
+  dlt = diff lib/ test/
+  a   = add
+  ap  = app -p
+  aa  = add --all
+  alt = add lib/ test/
+  c   = commit
+  cm  = commit -m
+  k   = checkout
+  kb  = checkout -b
+  b   = branch -a -v
+  bd  = branch -d
+  bdd = branch -D
+  m   = merge
+  p   = push
+  pt  = push --tags
+  u   = pull --ff-only
+  f   = fetch
+  rb  = rebase
+  rs  = fresh -frsl
   cau = reset --soft HEAD@{1}
   ust = reset HEAD .
-	chp = cherry-pick
-	pn  = remote prune origin
-	hd  = symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master
-	iw  = instaweb
-	iws = instaweb --stop
+  chp = cherry-pick
+  pn  = remote prune origin
+  hd  = symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master
+  iw  = instaweb
+  iws = instaweb --stop
