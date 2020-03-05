@@ -25,6 +25,12 @@ if [ -f ~/.bash/ruby.sh ]; then
   . ~/.bash/ruby.sh
 fi
 
+# Postgres.app stuff
+# - chpg init
+if [ -f ~/.bash/postgres-app.sh ]; then
+  . ~/.bash/postgres-app.sh
+fi
+
 # Python stuff
 # - pythonrc
 if [ -f ~/.bash/python.sh ]; then
