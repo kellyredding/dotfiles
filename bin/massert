@@ -3,17 +3,17 @@
 # BIN_NAME           = "massert"
 # TEST_DIR           = "test"
 # TEST_FILE_SUFFIXES = ["_test.rb"]
-# DEFAULT_TEST_CMD   = "MINITEST_REPORTER=ProgressReporter ./bin/rake test"
-# VERBOSE_TEST_CMD   = "MINITEST_REPORTER=SpecReporter ./bin/rake test"
+# DEFAULT_TEST_CMD   = "MINITEST_REPORTER=ProgressReporter ./bin/rails test"
+# VERBOSE_TEST_CMD   = "MINITEST_REPORTER=SpecReporter ./bin/rails test"
 # SEED_ENV_VAR_NAME  = "SEED"
 # ENV_VARS           = "USE_SIMPLE_COV=0"
 
-require 'benchmark'
-require 'set'
+require "benchmark"
+require "set"
 
 # https://github.com/redding/a-test-runner.rb
 module ATestRunner
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
   # update these as needed for your test setup
   BIN_NAME           = "massert"
@@ -36,7 +36,7 @@ module ATestRunner
       end
     end
 
-    attr_reader :stdout, :bin_name, :test_dir, :test_file_suffixes
+    attr_reader :stdout, :bin_name, :version, :test_dir, :test_file_suffixes
     attr_reader :default_test_cmd, :verbose_test_cmd
     attr_reader :seed_env_var_name, :env_vars
 
@@ -47,6 +47,7 @@ module ATestRunner
       @stdout = stdout || $stdout
 
       @bin_name           = BIN_NAME
+      @version            = VERSION
       @test_dir           = TEST_DIR
       @test_file_suffixes = TEST_FILE_SUFFIXES
       @default_test_cmd   = DEFAULT_TEST_CMD
@@ -57,7 +58,7 @@ module ATestRunner
       # cli option settings
       @seed_value   = begin; srand; srand % 0xFFFF; end.to_i
       @changed_only = false
-      @changed_ref  = ''
+      @changed_ref  = ""
       @verbose      = false
       @dry_run      = false
       @list         = false
@@ -71,83 +72,62 @@ module ATestRunner
         end
       end
     end
-  end
 
-  class CLI
-    def initialize(*argv)
-      @argv = argv
-      @clirb = CLIRB.new do
-        option 'seed_value', 'use a given seed to run tests', {
-          :abbrev => 's', :value => Integer
-        }
-        option 'changed_only', 'only run test files with changes', {
-          :abbrev => 'c'
-        }
-        option 'changed_ref', 'reference for changes, use with `-c` opt', {
-          :abbrev => 'r', :value => ''
-        }
-        option 'verbose', 'output verbose runtime test info', {
-          :abbrev => 'v'
-        }
-        option 'dry_run', 'output the test command to $stdout'
-        option 'list', 'list test files on $stdout', {
-          :abbrev => 'l'
-        }
-        # show loaded test files, cli err backtraces, etc
-        option 'debug', 'run in debug mode', {
-          :abbrev => 'd'
-        }
+    def debug_msg(msg)
+      "[DEBUG] #{msg}"
+    end
+
+    def debug_puts(msg)
+      self.puts debug_msg(msg)
+    end
+
+    def puts(msg)
+      self.stdout.puts msg
+    end
+
+    def print(msg)
+      self.stdout.print msg
+    end
+
+    def bench(start_msg, &block)
+      if !self.debug
+        block.call; return
+      end
+      self.print bench_start_msg(start_msg)
+      RoundedMillisecondTime.new(Benchmark.measure(&block).real).tap do |time_in_ms|
+        self.puts bench_finish_msg(time_in_ms)
       end
     end
 
-    def run
-      begin
-        @clirb.parse!(@argv)
-        Runner.new(ATestRunner.config, @clirb.args, @clirb.opts).run
-      rescue CLIRB::HelpExit
-        ATestRunner.config.stdout.puts help
-      rescue CLIRB::VersionExit
-        ATestRunner.config.stdout.puts ATestRunner::VERSION
-      rescue CLIRB::Error => exception
-        ATestRunner.config.stdout.puts "#{exception.message}\n\n"
-        ATestRunner.config.stdout.puts  ATestRunner.config.debug ? exception.backtrace.join("\n") : help
-        exit(1)
-      rescue StandardError => exception
-        ATestRunner.config.stdout.puts "#{exception.class}: #{exception.message}"
-        ATestRunner.config.stdout.puts exception.backtrace.join("\n")
-        exit(1)
-      end
-      exit(0)
+    def bench_start_msg(msg)
+      self.debug_msg("#{msg}...".ljust(30))
     end
 
-    def help
-      "Usage: #{ATestRunner.config.bin_name} [options] [TESTS]\n\n"\
-      "Options:"\
-      "#{@clirb}"
+    def bench_finish_msg(time_in_ms)
+      " (#{time_in_ms} ms)"
     end
   end
 
   class Runner
     attr_reader :config, :cmd_str
 
-    def initialize(config, test_paths, test_options)
+    def initialize(test_paths, config:)
       @config = config
-      self.config.apply(test_options)
 
       paths = test_paths.empty? ? [*self.config.test_dir] : test_paths
       @test_files = lookup_test_files(paths)
 
       if self.config.debug
-        self.config.stdout.puts ATestRunner.debug_msg("#{@test_files.size} Test files:")
+        self.config.debug_puts "#{@test_files.size} Test files:"
         @test_files.each do |fa|
-          self.config.stdout.puts ATestRunner.debug_msg("  #{fa}")
+          self.config.debug_puts "  #{fa}"
         end
       end
 
       @cmd_str = "#{cmd_str_env} #{cmd_str_cmd} #{@test_files.join(" ")}"
       if self.config.debug && !@test_files.empty?
-        self.config.stdout.puts ATestRunner.debug_msg("Test command:")
-        self.config.stdout.puts ATestRunner.debug_msg("  #{@cmd_str}")
+        self.config.debug_puts "Test command:"
+        self.config.debug_puts "  #{@cmd_str}"
       end
     end
 
@@ -155,8 +135,8 @@ module ATestRunner
       if execute_cmd_str?
         system(self.cmd_str)
       else
-        self.config.stdout.puts @test_files.join("\n") if self.config.list
-        self.config.stdout.puts self.cmd_str           if self.config.dry_run
+        self.config.puts @test_files.join("\n") if self.config.list
+        self.config.puts self.cmd_str           if self.config.dry_run
       end
     end
 
@@ -180,15 +160,15 @@ module ATestRunner
 
       if self.config.changed_only
         result = nil
-        ATestRunner.bench('Lookup changed test files') do
+        ATestRunner.bench("Lookup changed test files") do
           result = changed_test_files(test_paths)
         end
         files = result.files
         if config.debug
-          self.config.stdout.puts ATestRunner.debug_msg("  `#{result.cmd}`")
+          self.config.debug_puts "  `#{result.cmd}`"
         end
       else
-        ATestRunner.bench('Lookup test files') do
+        ATestRunner.bench("Lookup test files") do
           files = filtered_test_files(test_paths)
         end
       end
@@ -219,7 +199,7 @@ module ATestRunner
       path = File.expand_path(test_path, pwd)
       (Dir.glob("#{path}*") + Dir.glob("#{path}*/**/*")).
         select{ |p| is_test_file?(p) }.
-        map{ |p| p.gsub("#{pwd}/", '') }
+        map{ |p| p.gsub("#{pwd}/", "") }
     end
 
     def is_single_test?(file_line_path)
@@ -240,7 +220,7 @@ module ATestRunner
     def self.cmd(config, test_paths)
       [ "git diff --no-ext-diff --name-only #{config.changed_ref}", # changed files
         "git ls-files --others --exclude-standard"                  # added files
-      ].map{ |c| "#{c} -- #{test_paths.join(' ')}" }.join(' && ')
+      ].map{ |c| "#{c} -- #{test_paths.join(" ")}" }.join(" && ")
     end
 
     def self.new(config, test_paths)
@@ -257,20 +237,20 @@ module ATestRunner
     end
   end
 
-  class CLIRB  # Version 1.0.0, https://github.com/redding/cli.rb
+  class CLIRB  # Version 1.1.0, https://github.com/redding/cli.rb
     Error    = Class.new(RuntimeError);
     HelpExit = Class.new(RuntimeError); VersionExit = Class.new(RuntimeError)
     attr_reader :argv, :args, :opts, :data
 
     def initialize(&block)
       @options = []; instance_eval(&block) if block
-      require 'optparse'
+      require "optparse"
       @data, @args, @opts = [], [], {}; @parser = OptionParser.new do |p|
-        p.banner = ''; @options.each do |o|
+        p.banner = ""; @options.each do |o|
           @opts[o.name] = o.value; p.on(*o.parser_args){ |v| @opts[o.name] = v }
         end
-        p.on_tail('--version', ''){ |v| raise VersionExit, v.to_s }
-        p.on_tail('--help',    ''){ |v| raise HelpExit,    v.to_s }
+        p.on_tail("--version", ""){ |v| raise VersionExit, v.to_s }
+        p.on_tail("--help",    ""){ |v| raise HelpExit,    v.to_s }
       end
     end
 
@@ -283,72 +263,101 @@ module ATestRunner
     end
     def to_s; @parser.to_s; end
     def inspect
-      "#<#{self.class}:#{'0x0%x' % (object_id << 1)} @data=#{@data.inspect}>"
+      "#<#{self.class}:#{"0x0%x" % (object_id << 1)} @data=#{@data.inspect}>"
     end
 
     class Option
       attr_reader :name, :opt_name, :desc, :abbrev, :value, :klass, :parser_args
 
-      def initialize(name, *args)
-        settings, @desc = args.last.kind_of?(::Hash) ? args.pop : {}, args.pop || ''
-        @name, @opt_name, @abbrev = parse_name_values(name, settings[:abbrev])
-        @value, @klass = gvalinfo(settings[:value])
+      def initialize(name, desc = nil, abbrev: nil, value: nil)
+        @name, @desc = name, desc || ""
+        @opt_name, @abbrev = parse_name_values(name, abbrev)
+        @value, @klass = gvalinfo(value)
         @parser_args = if [TrueClass, FalseClass, NilClass].include?(@klass)
           ["-#{@abbrev}", "--[no-]#{@opt_name}", @desc]
         else
-          ["-#{@abbrev}", "--#{@opt_name} #{@opt_name.upcase}", @klass, @desc]
+          ["-#{@abbrev}", "--#{@opt_name} VALUE", @klass, @desc]
         end
       end
 
       private
 
       def parse_name_values(name, custom_abbrev)
-        [ (processed_name = name.to_s.strip.downcase), processed_name.gsub('_', '-'),
-          custom_abbrev || processed_name.gsub(/[^a-z]/, '').chars.first || 'a'
+        [ (processed_name = name.to_s.strip.downcase).gsub("_", "-"),
+          custom_abbrev || processed_name.gsub(/[^a-z]/, "").chars.first || "a"
         ]
       end
       def gvalinfo(v); v.kind_of?(Class) ? [nil,v] : [v,v.class]; end
-      # def gklass(k); k == Fixnum ? Integer : k; end
     end
   end
 
   # ATestRunner
 
+  def self.clirb
+    @clirb ||= CLIRB.new do
+      option "seed_value", "use a given seed to run tests", {
+        abbrev: "s", value: Integer
+      }
+      option "changed_only", "only run test files with changes", {
+        abbrev: "c"
+      }
+      option "changed_ref", "reference for changes, use with `-c` opt", {
+        abbrev: "r", value: ""
+      }
+      option "verbose", "output verbose runtime test info", {
+        abbrev: "v"
+      }
+      option "dry_run", "output the test command to $stdout"
+      option "list", "list test files on $stdout", {
+        abbrev: "l"
+      }
+      # show loaded test files, cli err backtraces, etc
+      option "debug", "run in debug mode", {
+        abbrev: "d"
+      }
+    end
+  end
+
   def self.config
     @config ||= Config.new
   end
 
-  def self.debug?(argv)
-    !!argv.find{ |a| (a =~ /-[a-c,e-z]*d/ && a != "--dry-run") || a == "--debug" }
+  def self.apply(argv)
+    self.clirb.parse!(argv)
+    self.config.apply(clirb.opts)
   end
 
-  def self.debug_msg(msg)
-    "[DEBUG] #{msg}"
+  def self.bench(*args, &block)
+    self.config.bench(*args, &block)
   end
 
-  def self.debug_start_msg(msg)
-    debug_msg("#{msg}...".ljust(30))
-  end
-
-  def self.debug_finish_msg(time_in_ms)
-    " (#{time_in_ms} ms)"
-  end
-
-  def self.bench(start_msg, &block)
-    if !ATestRunner.config.debug
-      block.call; return
+  def self.run
+    begin
+      Runner.new(self.clirb.args, config: self.config).run
+    rescue CLIRB::HelpExit
+      self.config.puts self.help_msg
+    rescue CLIRB::VersionExit
+      self.config.puts self.config.version
+    rescue CLIRB::Error => exception
+      self.config.puts "#{exception.message}\n\n"
+      self.config.puts self.config.debug ? exception.backtrace.join("\n") : self.help_msg
+      exit(1)
+    rescue StandardError => exception
+      self.config.puts "#{exception.class}: #{exception.message}"
+      self.config.puts exception.backtrace.join("\n")
+      exit(1)
     end
-    self.config.stdout.print debug_start_msg(start_msg)
-    RoundedMillisecondTime.new(Benchmark.measure(&block).real).tap do |time_in_ms|
-      self.config.stdout.puts debug_finish_msg(time_in_ms)
-    end
+    exit(0)
+  end
+
+  def self.help_msg
+    "Usage: #{self.config.bin_name} [options] [TESTS]\n\n"\
+    "Options:"\
+    "#{self.clirb}"
   end
 end
 
-unless ENV['A_TEST_RUNNER_DISABLE_RUN']
-  ATestRunner.config.debug ATestRunner.debug?(ARGV)
-
-  cli = nil
-  ATestRunner.bench('CLI init and parse'){ cli = ATestRunner::CLI.new(*ARGV) }
-  cli.run
+unless ENV["A_TEST_RUNNER_DISABLE_RUN"]
+  ATestRunner.bench("ARGV parse and configure"){ ATestRunner.apply(ARGV) }
+  ATestRunner.run
 end
