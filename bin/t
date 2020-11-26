@@ -17,7 +17,7 @@ module ATestRunner
   VERSION = "1.0.2"
 
   # update these as needed for your test setup
-  BIN_NAME              = "massert"
+  BIN_NAME              = "t"
   TEST_DIR              = "test"
   TEST_FILE_SUFFIXES    = ["_test.rb"]
   DEFAULT_TEST_CMD      = "MINITEST_REPORTER=ProgressReporter ./bin/rails test"
