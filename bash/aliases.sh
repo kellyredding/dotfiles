@@ -20,18 +20,12 @@ alias dk="bx dk"
 alias cap="bx cap"
 alias rake="bx rake"
 alias jekyll="bx jekyll"
-alias foreman="bx foreman"
 alias assert="bx assert"
 alias iassert="time __assert_individually"
 alias urlc="urlcheck < ~/.urlcheck_urls"
 alias sanford="bx sanford"
 alias ardb="bx ardb"
 alias dassets="bx dassets"
-
-alias cop="__cop"
-alias copf="__copf"
-alias copp="__copp"
-alias copac="__copac"
 
 alias ghost="sudo ghost"
 alias ghost-ssh="ghost-ssh"
@@ -44,7 +38,3 @@ alias st='subl .'
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
 
 alias til='grep -d recurse -h `date "+%m/%d"` /usr/share/calendar/'
-
-# legacy REE for El Capitan gem compilation
-alias reebundle="CFLAGS=\"-O2 -fno-tree-dce -fno-optimize-sibling-calls\" bundle"
-alias reegem="CFLAGS=\"-O2 -fno-tree-dce -fno-optimize-sibling-calls\" gem"
