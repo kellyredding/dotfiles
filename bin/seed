@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Run ./bin/seed in Rails projects
+./bin/seed $*
