@@ -37,6 +37,12 @@ if [ -f ~/.bash/python.sh ]; then
   . ~/.bash/python.sh
 fi
 
+# Salesforce CLI stuff
+# - sfdx completion
+if [ -f ~/.bash/sfdx.sh ]; then
+  . ~/.bash/sfdx.sh
+fi
+
 # Aliases
 if [ -f ~/.bash/aliases.sh ]; then
   . ~/.bash/aliases.sh
