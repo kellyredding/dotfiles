@@ -35,7 +35,7 @@ alias ghost-ssh="ghost-ssh"
 alias tlog='mkdir -p log; touch log/development.log; tail -f log/development.log'
 alias rst='touch tmp/restart.txt'
 
-alias st='subl .'
+alias st='subl -n .'
 
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
 
