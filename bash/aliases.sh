@@ -3,8 +3,6 @@ alias la='ls -A'
 alias ll='ls -lahF'
 alias ..='cd ..'
 
-alias cat="bat"
-
 alias plz='sudo $(history -p \!\!)'
 alias path='echo -e ${PATH//:/\\\n}'
 alias targz='tar xzvf'
