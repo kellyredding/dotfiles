@@ -22,16 +22,5 @@ if [ -f ~/.bash/scripts/grb-completion-kellyredding.sh ]; then
   . ~/.bash/scripts/grb-completion-kellyredding.sh
 fi
 
-# assert individually
-
-if [ -f ~/.bash/scripts/assert-individually.sh ]; then
-  . ~/.bash/scripts/assert-individually.sh
-fi
-
-# rubocop macros
-if [ -f ~/.bash/scripts/rubocop-macros.sh ]; then
-  . ~/.bash/scripts/rubocop-macros.sh
-fi
-
 export GEM_EDITOR="subl"
 export DISABLE_SPRING=1
