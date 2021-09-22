@@ -2,12 +2,12 @@
 
 if command -v rb &>/dev/null; then
   eval "$(rb init --auto)"
-fi
 
-# rb status prompt stuff
+  # rb status prompt stuff
 
-if [ -f ~/.bash/scripts/rb-prompt-kellyredding.sh ]; then
-  . ~/.bash/scripts/rb-prompt-kellyredding.sh
+  if [ -f ~/.bash/scripts/rb-prompt-kellyredding.sh ]; then
+    . ~/.bash/scripts/rb-prompt-kellyredding.sh
+  fi
 fi
 
 # gem completion
