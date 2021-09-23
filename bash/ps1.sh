@@ -6,7 +6,7 @@ if [ -f ~/.bash/colors.sh ]; then
 
     PS1=""
 
-    if [ -f ~/.bashrc ]; then                 # => if not on my development machine
+    if [[ -z "${KELLY_DEV_MACHINE}" ]]; then  # => if not on my development machine
       PS1=$PS1"\[$bldgrn\]\u@\h\[$txtrst\]:"  #    user@host: in green, bold
     fi
 
