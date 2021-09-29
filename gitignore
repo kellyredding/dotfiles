@@ -5,3 +5,5 @@
 *.tmp
 *.pid
 *~
+.l.yml
+.t.yml
