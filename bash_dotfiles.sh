@@ -3,6 +3,11 @@ if [ -d "$HOME/.bin" ]; then
   export PATH="$HOME/.bin:$PATH"
 fi
 
+# dotfiles bin path
+if [ -d "$HOME/.dotfiles/bin" ]; then
+  export PATH="$HOME/.dotfiles/bin:$PATH"
+fi
+
 # start new shells in last used dir
 # export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 
