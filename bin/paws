@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+export_regex = /^export /
+quotes_regex = /"/
+dot_env_local_file_name = "./.env.local"
+dot_env_local_expanded_file_name = File.expand_path(dot_env_local_file_name)
+input =
+  case RUBY_PLATFORM
+  when /darwin/
+    `pbpaste`
+  when /linux/
+    `xclip -o`
+  end
+
+if input && input.match?(export_regex) && File.exists?(dot_env_local_expanded_file_name)
+  File.open(dot_env_local_expanded_file_name, "w") do |file|
+    file.write(
+      input
+        .gsub(export_regex, "")
+        .gsub(quotes_regex, ""),
+    )
+  end
+  puts "Updated AWS credentials in `#{dot_env_local_file_name}`:"
+  puts File.read(dot_env_local_expanded_file_name)
+elsif  File.exists?(dot_env_local_expanded_file_name)
+  puts "Expected AWS profile credentials; given:"
+  puts input
+else
+  puts "Expected `#{dot_env_local_file_name}`; file does not exist."
+end
