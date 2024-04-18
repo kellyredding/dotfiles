@@ -35,7 +35,6 @@ I am running on Mac OS X, bash.
 * git completion
 * gem completion**
 * rake completion
-* cap completion (TODO)
 
 ** requires install of [ruby-build and rb](https://github.com/redding/rb)
 
