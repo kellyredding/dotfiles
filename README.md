@@ -23,6 +23,14 @@ if [ -f ~/.bash_dotfiles.sh ]; then
 fi
 ```
 
+(optional: create a custom install location for non-homebrew packages)
+
+```sh
+sudo mkdir -p /opt/kellyredding/bin
+sudo chown $USER /opt/kellyredding/
+sudo chgrp admin /opt/kellyredding/
+```
+
 ## Environment
 
 I am running on Mac OS X, bash.

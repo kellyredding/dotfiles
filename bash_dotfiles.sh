@@ -8,6 +8,11 @@ if [ -d "$HOME/.dotfiles/bin" ]; then
   export PATH="$HOME/.dotfiles/bin:$PATH"
 fi
 
+# /opt/kellyredding bin path
+if [ -d "/opt/kellyredding/bin" ]; then
+  export PATH="/opt/kellyredding/bin:$PATH"
+fi
+
 # start new shells in last used dir
 # export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 
