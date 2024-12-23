@@ -23,7 +23,11 @@ require 'irb/completion'
 
 # History
 unless IRB.conf[:HISTORY_FILE]
-  require 'irb/ext/save-history'
+  begin
+    require 'irb/ext/save-history'
+  rescue LoadError
+    require 'irb/ext/eval_history'
+  end
   IRB.conf[:SAVE_HISTORY] = 100
   IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 end
