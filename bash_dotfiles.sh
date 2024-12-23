@@ -21,6 +21,9 @@ fi
 # start new shells in last used dir
 # export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 
+# disable Homebrew auto updates
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # Color definitions
 if [ -f ~/.bash/colors.sh ]; then
   . ~/.bash/colors.sh
