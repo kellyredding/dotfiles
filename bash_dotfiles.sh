@@ -13,6 +13,11 @@ if [ -d "/opt/kellyredding/bin" ]; then
   export PATH="/opt/kellyredding/bin:$PATH"
 fi
 
+# Mise Node LTS bin path
+if [ -d "$HOME/.local/share/mise/installs/node/lts/bin" ]; then
+  export PATH="$HOME/.local/share/mise/installs/node/lts/bin:$PATH"
+fi
+
 # start new shells in last used dir
 # export PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 
