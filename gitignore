@@ -1,10 +1,28 @@
+# Ignore .windsurfrules files globally
+.windsurfrules
+
+# OS generated files
 .DS_Store
-.svn
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor/IDE specific files
+.idea/
+.vscode/
+*.sublime-*
 *.swp
+*~
+
+# Utilities and other stuff
+.svn
 *.log
 *.tmp
 *.pid
-*~
+
 .l.yml
 .t.yml
 .chpg-version
