@@ -398,3 +398,6 @@ _backlog_completion() {
 
 # Register the completion function
 complete -o default -F _backlog_completion backlog
+
+# Register the completion function for my alias
+complete -o default -F _backlog_completion blog
