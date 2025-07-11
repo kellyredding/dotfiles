@@ -36,6 +36,8 @@ alias rst='touch tmp/restart.txt'
 
 alias blog="backlog"
 alias st='subl -n .'
+alias sor="cursor ."
+alias win="windsurf ."
 
 alias readme='test -x `which redcarpet` && test -f ./README.md && redcarpet README.md > ~/.Trash/readme.html && open ~/.Trash/readme.html'
 
