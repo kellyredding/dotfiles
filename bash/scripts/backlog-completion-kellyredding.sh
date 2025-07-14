@@ -13,11 +13,11 @@ _backlog_completion() {
     cword=$COMP_CWORD
 
     # Main commands
-    local main_commands="init task tasks draft board doc decision agents config browser help"
-    
+    local main_commands="init task tasks draft board doc decision agents config cleanup browser help"
+
     # Global flags
     local global_flags="-v --version -h --help"
-    
+
     # Subcommands for each main command
     local task_commands="create list edit view archive demote"
     local draft_commands="create archive promote view"
@@ -25,7 +25,7 @@ _backlog_completion() {
     local doc_commands="create list view help"
     local decision_commands="create help"
     local config_commands="get set list help"
-    
+
     # Flags for main commands
     local init_flags="-h --help"
     local task_flags="--plain -h --help"
@@ -35,8 +35,9 @@ _backlog_completion() {
     local decision_flags="-h --help"
     local agents_flags="--update-instructions -h --help"
     local config_flags="-h --help"
+    local cleanup_flags="-h --help"
     local browser_flags="-p --port --no-open -h --help"
-    
+
     # Flags for task subcommands
     local task_create_flags="-d --description --desc -a --assignee -s --status -l --labels --priority --ac --acceptance-criteria --plan --notes --draft -p --parent --depends-on --dep -h --help"
     local task_list_flags="-s --status -a --assignee -p --parent --plain -h --help"
@@ -44,40 +45,40 @@ _backlog_completion() {
     local task_view_flags="--plain -h --help"
     local task_archive_flags="-h --help"
     local task_demote_flags="-h --help"
-    
+
     # Flags for draft subcommands
     local draft_create_flags="-d --description --desc -a --assignee -s --status -l --labels -h --help"
     local draft_archive_flags="-h --help"
     local draft_promote_flags="-h --help"
     local draft_view_flags="--plain -h --help"
-    
+
     # Flags for board subcommands
     local board_view_flags="-l --layout --vertical -h --help"
     local board_export_flags="-o --output -h --help"
-    
+
     # Flags for doc subcommands
     local doc_create_flags="-p --path -t --type -h --help"
     local doc_list_flags="--plain -h --help"
     local doc_view_flags="-h --help"
-    
+
     # Flags for decision subcommands
     local decision_create_flags="-s --status -h --help"
-    
+
     # Flags for config subcommands
     local config_get_flags="-h --help"
     local config_set_flags="-h --help"
     local config_list_flags="-h --help"
-    
+
     # Priority values
     local priority_values="high medium low"
-    
+
     # Layout values
     local layout_values="horizontal vertical"
-    
+
     # Get the position of the main command
     local main_cmd=""
     local main_cmd_pos=1
-    
+
     # Find the main command
     for ((i=1; i<cword; i++)); do
         case "${words[i]}" in
@@ -88,7 +89,7 @@ _backlog_completion() {
                 ;;
         esac
     done
-    
+
     # If no main command found, complete main commands and global flags
     if [[ -z "$main_cmd" ]]; then
         if [[ "$cur" == -* ]]; then
@@ -98,7 +99,7 @@ _backlog_completion() {
         fi
         return 0
     fi
-    
+
     # Handle completion based on main command
     case "$main_cmd" in
         init)
@@ -106,12 +107,12 @@ _backlog_completion() {
                 COMPREPLY=($(compgen -W "$init_flags" -- "$cur"))
             fi
             ;;
-            
+
         task|tasks)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     create|list|edit|view|archive|demote)
@@ -119,7 +120,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or task flags
                 if [[ "$cur" == -* ]]; then
@@ -167,12 +168,12 @@ _backlog_completion() {
                 esac
             fi
             ;;
-            
+
         draft)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     create|archive|promote|view)
@@ -180,7 +181,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or draft flags
                 if [[ "$cur" == -* ]]; then
@@ -214,12 +215,12 @@ _backlog_completion() {
                 esac
             fi
             ;;
-            
+
         board)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     view|export)
@@ -227,7 +228,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or board flags
                 if [[ "$cur" == -* ]]; then
@@ -256,12 +257,12 @@ _backlog_completion() {
                 esac
             fi
             ;;
-            
+
         doc)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     create|list|view|help)
@@ -269,7 +270,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or doc flags
                 if [[ "$cur" == -* ]]; then
@@ -300,12 +301,12 @@ _backlog_completion() {
                 esac
             fi
             ;;
-            
+
         decision)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     create|help)
@@ -313,7 +314,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or decision flags
                 if [[ "$cur" == -* ]]; then
@@ -332,18 +333,18 @@ _backlog_completion() {
                 esac
             fi
             ;;
-            
+
         agents)
             if [[ "$cur" == -* ]]; then
                 COMPREPLY=($(compgen -W "$agents_flags" -- "$cur"))
             fi
             ;;
-            
+
         config)
             # Check if we're completing a subcommand
             local subcmd=""
             local subcmd_pos=$((main_cmd_pos + 1))
-            
+
             if [[ $subcmd_pos -lt $cword ]]; then
                 case "${words[subcmd_pos]}" in
                     get|set|list|help)
@@ -351,7 +352,7 @@ _backlog_completion() {
                         ;;
                 esac
             fi
-            
+
             if [[ -z "$subcmd" ]]; then
                 # Complete subcommands or config flags
                 if [[ "$cur" == -* ]]; then
@@ -379,20 +380,27 @@ _backlog_completion() {
                         ;;
                 esac
             fi
+                        ;;
+
+        cleanup)
+            if [[ "$cur" == -* ]]; then
+                COMPREPLY=($(compgen -W "$cleanup_flags" -- "$cur"))
+            fi
             ;;
-            
+
         browser)
             if [[ "$cur" == -* ]]; then
                 COMPREPLY=($(compgen -W "$browser_flags" -- "$cur"))
             fi
             ;;
-            
+
+
         help)
             # Complete with all main commands for help
             COMPREPLY=($(compgen -W "$main_commands" -- "$cur"))
             ;;
     esac
-    
+
     return 0
 }
 
