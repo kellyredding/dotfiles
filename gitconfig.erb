@@ -65,4 +65,5 @@
   reset = reset
   root  = rev-parse --show-toplevel
   chp   = cherry-pick
-  pn    = remote prune origin
+  pn    = "!git remote prune origin && git gone"
+  gone  = "!git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D"
