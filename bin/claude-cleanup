@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Cleaning up after Claude session..."
+
+echo "Disabling bracketed paste mode..."
+printf "\e[?2004l"

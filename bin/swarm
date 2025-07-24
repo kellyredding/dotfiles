@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "claude-swarm start "$@""
+claude-swarm start "$@" && ~/.bin/claude-cleanup
