@@ -3,11 +3,6 @@ if [ -d "$HOME/.bin" ]; then
   export PATH="$HOME/.bin:$PATH"
 fi
 
-# dotfiles bin path
-if [ -d "$HOME/.dotfiles/bin" ]; then
-  export PATH="$HOME/.dotfiles/bin:$PATH"
-fi
-
 # /opt/kellyredding bin path
 if [ -d "/opt/kellyredding/bin" ]; then
   export PATH="/opt/kellyredding/bin:$PATH"
