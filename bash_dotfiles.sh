@@ -31,6 +31,12 @@ if [ -f ~/.bash/git.sh ]; then
   . ~/.bash/git.sh
 fi
 
+# Backlog stuff
+# - command auto complete
+if [ -f ~/.bash/backlog.sh ]; then
+  . ~/.bash/backlog.sh
+fi
+
 # Ruby stuff
 # - rb init
 # - gem completion
