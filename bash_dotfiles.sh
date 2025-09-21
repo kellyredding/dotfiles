@@ -49,6 +49,12 @@ if [ -f ~/.bash/ruby.sh ]; then
   . ~/.bash/ruby.sh
 fi
 
+# Yarn stuff
+# - command auto complete
+if [ -f ~/.bash/yarn.sh ]; then
+  . ~/.bash/yarn.sh
+fi
+
 # Postgres.app stuff
 # - chpg init
 if [ -f ~/.bash/postgres-app.sh ]; then
