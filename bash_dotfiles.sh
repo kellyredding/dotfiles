@@ -24,6 +24,11 @@ if [ -f ~/.bash/colors.sh ]; then
   . ~/.bash/colors.sh
 fi
 
+# Brew stuff
+if [ -f ~/.bash/brew.sh ]; then
+  . ~/.bash/brew.sh
+fi
+
 # Git stuff
 # - command auto complete
 # - ps1 helpers
