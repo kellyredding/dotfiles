@@ -1,6 +1,14 @@
-# home bin path
+# home bin paths
 if [ -d "$HOME/.bin" ]; then
   export PATH="$HOME/.bin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# mise shims (for tools like crystal)
+if [ -d "$HOME/.local/share/mise/shims" ]; then
+  export PATH="$HOME/.local/share/mise/shims:$PATH"
 fi
 
 # /opt/kellyredding bin path
