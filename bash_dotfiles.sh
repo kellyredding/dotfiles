@@ -42,6 +42,12 @@ if [ -f ~/.bash/backlog.sh ]; then
   . ~/.bash/backlog.sh
 fi
 
+# Claude Persona stuff
+# - command auto complete
+if [ -f ~/.bash/claude-persona.sh ]; then
+  . ~/.bash/claude-persona.sh
+fi
+
 # Ruby stuff
 # - rb init
 # - gem completion

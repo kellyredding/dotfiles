@@ -36,6 +36,7 @@ alias tlog='mkdir -p log; touch log/development.log; tail -f log/development.log
 alias rst='touch tmp/restart.txt'
 
 alias blog="backlog"
+alias persona="claude-persona"
 alias c="claude && ~/.bin/claude-cleanup"
 alias st='subl -n .'
 alias sor="cursor ."
