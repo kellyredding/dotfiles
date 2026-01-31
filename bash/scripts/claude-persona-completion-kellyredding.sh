@@ -12,13 +12,14 @@ _claude_persona_completion() {
     words=("${COMP_WORDS[@]}")
     cword=$COMP_CWORD
 
-    local commands="list generate show rename remove mcp help version"
+    local commands="list generate show rename remove update mcp help version"
     local mcp_commands="available list import import-all show remove"
+    local update_commands="preview force help"
     local global_opts="--vibe --dangerously-skip-permissions --dry-run --resume --help --version -r -h -v"
 
     # Get persona names dynamically
     _claude_persona_personas() {
-        claude-persona list 2>/dev/null | grep -E '^  [a-zA-Z0-9_-]+$' | sed 's/^  //'
+        claude-persona list 2>/dev/null | grep -E '^  [a-zA-Z0-9_-]+ \(' | sed 's/^  //' | cut -d' ' -f1
     }
 
     # Get imported MCP config names dynamically
@@ -52,6 +53,9 @@ _claude_persona_completion() {
                     ;;
                 mcp)
                     COMPREPLY=($(compgen -W "${mcp_commands}" -- "${cur}"))
+                    ;;
+                update)
+                    COMPREPLY=($(compgen -W "${update_commands}" -- "${cur}"))
                     ;;
                 --resume|-r)
                     COMPREPLY=()
