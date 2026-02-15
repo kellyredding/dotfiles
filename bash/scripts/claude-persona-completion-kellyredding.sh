@@ -12,10 +12,10 @@ _claude_persona_completion() {
     words=("${COMP_WORDS[@]}")
     cword=$COMP_CWORD
 
-    local commands="list generate show rename remove update mcp help version"
+    local commands="list generate show rename remove track-session update mcp help version"
     local mcp_commands="available list import import-all show remove"
     local update_commands="preview force help"
-    local global_opts="--vibe --dangerously-skip-permissions --dry-run --resume --help --version -r -h -v"
+    local global_opts="--vibe --dangerously-skip-permissions --dry-run --print --resume --output-format --help --version -p -r -h -v"
 
     # Get persona names dynamically
     _claude_persona_personas() {
@@ -57,8 +57,17 @@ _claude_persona_completion() {
                 update)
                     COMPREPLY=($(compgen -W "${update_commands}" -- "${cur}"))
                     ;;
+                track-session)
+                    COMPREPLY=($(compgen -f -- "${cur}"))
+                    ;;
                 --resume|-r)
                     COMPREPLY=()
+                    ;;
+                --print|-p)
+                    COMPREPLY=()
+                    ;;
+                --output-format)
+                    COMPREPLY=($(compgen -W "text json stream-json" -- "${cur}"))
                     ;;
                 list|generate|help|version)
                     if [[ "${cur}" == -* ]]; then
