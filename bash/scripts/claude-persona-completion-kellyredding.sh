@@ -128,4 +128,3 @@ complete -o default -F _claude_persona_completion claude-persona
 
 # Register the completion function for my aliases
 complete -o default -F _claude_persona_completion persona
-complete -o default -F _claude_persona_completion vibe

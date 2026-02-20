@@ -56,6 +56,12 @@ if [ -f ~/.bash/claude-persona.sh ]; then
   . ~/.bash/claude-persona.sh
 fi
 
+# Galaxy stuff
+# - command auto complete
+if [ -f ~/.bash/galaxy.sh ]; then
+  . ~/.bash/galaxy.sh
+fi
+
 # Ruby stuff
 # - rb init
 # - gem completion
