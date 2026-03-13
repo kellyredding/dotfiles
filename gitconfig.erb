@@ -66,3 +66,4 @@
   chp   = cherry-pick
   pn    = "!git remote prune origin && git gone"
   gone  = "!git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D"
+  xl    = "!rm -f \"$(git rev-parse --git-dir)/index.lock\" && echo 'Removed index.lock'"
