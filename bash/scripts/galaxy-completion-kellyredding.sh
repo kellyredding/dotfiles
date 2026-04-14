@@ -13,13 +13,16 @@ _galaxy_completion() {
     cword=$COMP_CWORD
 
     # Galaxy's own commands (always available)
-    local galaxy_commands="update help version"
+    local galaxy_commands="config backups update help version"
 
     # Commands delegated to claude-persona
     local persona_commands="generate list show rename remove mcp"
 
     local mcp_commands="available list import import-all show remove"
     local update_commands="preview force help"
+    local config_commands="set get reset path help"
+    local config_keys="backups.enabled backups.retention_days backups.path"
+    local backups_commands="create list prune help"
 
     # Galaxy flags (subset of claude-persona flags that Galaxy parses)
     local global_opts="--vibe --dry-run --print --resume --help --version -p -r -h -v"
@@ -71,6 +74,12 @@ _galaxy_completion() {
             ;;
         2)
             case "${prev}" in
+                config)
+                    COMPREPLY=($(compgen -W "${config_commands}" -- "${cur}"))
+                    ;;
+                backups)
+                    COMPREPLY=($(compgen -W "${backups_commands}" -- "${cur}"))
+                    ;;
                 show|remove)
                     local personas=$(_galaxy_personas)
                     COMPREPLY=($(compgen -W "${personas}" -- "${cur}"))
@@ -116,6 +125,33 @@ _galaxy_completion() {
             local subcmd="${words[2]}"
 
             case "${cmd}" in
+                config)
+                    case "${subcmd}" in
+                        set|get)
+                            # Offer config key names
+                            COMPREPLY=($(compgen -W "${config_keys}" -- "${cur}"))
+                            ;;
+                        *)
+                            if [[ "${cur}" == -* ]]; then
+                                COMPREPLY=($(compgen -W "${global_opts}" -- "${cur}"))
+                            fi
+                            ;;
+                    esac
+                    ;;
+                backups)
+                    case "${subcmd}" in
+                        create)
+                            if [[ "${cur}" == -* ]]; then
+                                COMPREPLY=($(compgen -W "--dry-run" -- "${cur}"))
+                            fi
+                            ;;
+                        *)
+                            if [[ "${cur}" == -* ]]; then
+                                COMPREPLY=($(compgen -W "${global_opts}" -- "${cur}"))
+                            fi
+                            ;;
+                    esac
+                    ;;
                 mcp)
                     case "${subcmd}" in
                         show|remove)
